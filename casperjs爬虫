@@ -1,0 +1,23 @@
+var casper = require('casper').create({
+ pageSettings: {
+ loadImages: false,       
+ loadPlugins: false,      
+ userAgent: 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.137 Safari/537.36 LBBROWSER'
+},
+logLevel: "debug",//日志等级
+verbose: true    // 记录日志到控制台
+ });
+
+
+
+casper.start('http://toutiao.com/a6295514420525138433/', function() {
+   var path = window.document.location.pathname;
+   path = path.substring(1,path.lastIndexOf('/')+1);
+   path += 'html.html';
+   this.echo(path);
+   var fs = require('fs');
+   fs.write(path, this.getHTML(), 'w');
+   f.close();   
+});
+
+casper.run();
