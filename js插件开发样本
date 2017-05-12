@@ -1,0 +1,43 @@
+/********************
+var hr = new HttpRequest();
+alert(hr.get("http://www.qq.com/",false));
+hr.addEvent('readystatechange',function(){if(hr.getReadyState()==4){alert(hr.getResponseText());}});
+hr.get("https://www.baidu.com/",true);
+var hr2 = new HttpRequest();
+hr2.addEvent('readystatechange',function(){if(hr2.getReadyState()==4){alert(hr2.getResponseText());}});
+hr2.post("http://update.95cm.com/Home/common/update/tj",'version=1.0.0.8&type=install&mac=12:34:56:78',true);
+*********************/
+;(function(window,undefined){
+	var HttpRequest = function(){
+		this.xhr = new XMLHttpRequest();
+	}
+	HttpRequest.prototype={
+		getResponseText:function(){
+			return this.xhr.responseText;
+		},
+		getReadyState:function(){
+			return this.xhr.readyState;
+		},
+		getStatus:function(){
+			return this.xhr.status;
+		},
+		addEvent:function(event,fn){
+			this.xhr.addEventListener(event,fn);
+		},
+		removeEvent:function(event,fn){
+			this.xhr.removeEventListener(event,fn);
+		},
+		get:function(url,asyn){
+			this.xhr.open("GET",url,asyn);
+			this.xhr.send();
+			return this.xhr.responseText;
+		},
+		post:function(url,data,asyn){
+			this.xhr.open("POST",url,asyn);
+			this.xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			this.xhr.send(data);
+			return this.xhr.responseText;
+		}
+	}
+	window.HttpRequest = HttpRequest;
+}(window));
