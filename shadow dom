@@ -15,6 +15,7 @@ img.src = this.getAttribute('data-img');
 img.width = '150'; img.height = '150'; 
 img.className = 'product-img'; // Add the image to the Shadow Root. shadow.appendChild(img); // Add an event listener to the image. 
 img.addEventListener('click', function(e) { window.location = this.getAttribute('data-url'); }); // Create a link to the product. 
+shadow.appendChild(img);
 var link = document.createElement('a'); 
 link.innerText = this.getAttribute('data-name'); 
 link.href = this.getAttribute('data-url'); 
