@@ -1,0 +1,4 @@
+//v.stlye只能获取内联样式，获取css属性需要下面代码，不适用于ie,ie为currentStyle
+var v = document.querySelector(".J_Cat");
+var style=window.getComputedStyle(v, "");
+var style=window.getComputedStyle(v3, "hover");
